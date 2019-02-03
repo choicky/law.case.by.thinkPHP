@@ -1,0 +1,163 @@
+<extend name="Public:base" />
+	
+	<block name="title">
+		<title>更新寄件记录</title>
+	</block>
+	
+	<block name="page">
+	  
+		<!-- Page Header
+		================================================== -->
+        <div class="row">
+			<div class="col-lg-12">
+				<div class="page-header">
+					<h3 id="forms">更新寄件记录</h3>
+				</div>
+			</div>
+        </div>
+
+        <div class="row">
+			<div class="col-lg-9">
+				<div class="well bs-component">
+					<form class="form-horizontal" method="post" action="{:U('Mail/update')}">
+						<fieldset>
+							<legend>尽量填写完整每一项</legend>
+							<!-- 隐藏域开始 -->
+								<input type="hidden" class="form-control" id="mail_id" name="mail_id" value="{$mail_list.mail_id}">
+							<!-- 隐藏域结束 -->
+							<div class="form-group">
+								<label for="mail_date" class="col-lg-3 control-label">寄件日期</label>
+								<div class="col-lg-4">
+									<input type="date" class="form-control" id="mail_date" name="mail_date" value="{$mail_list['mail_date']	?	date("Y-m-d",$mail_list['mail_date'])	:	''}">
+								</div>
+								<div class="col-lg-5">
+									日期格式为 yyyy-mm-dd，可用鼠标选择
+								</div>
+							<div class="form-group">
+								<label for="mail_number" class="col-lg-3 control-label">寄件人/跟案人</label>
+								<div class="col-lg-4">									
+									<select class="form-control" name="follower_id">
+										<option value="" {$mail_list['follower_id']==0	? 'selected="selected"' :'' }></option>
+										<volist name="member_list" id="member_vo">
+										<option value="{$member_vo.member_id}" {$member_vo['member_id']==$mail_list['follower_id']? 'selected="selected"' :'' }>{$member_vo.member_name}</option>
+										</volist>
+									</select>
+								</div>
+								<div class="col-lg-5">
+									必选
+								</div>
+							</div>
+							</div>
+							<div class="form-group">
+								<label for="mail_summary" class="col-lg-3 control-label">摘要</label>
+								<div class="col-lg-4">
+									<input type="text" class="form-control" id="mail_summary" name="mail_summary" value="{$mail_list['mail_summary']}">
+								</div>
+								<div class="col-lg-5">
+									无
+								</div>
+							</div>
+                            <div class="form-group">
+								<label for="recipient_name" class="col-lg-3 control-label">收件人名称</label>
+								<div class="col-lg-4">
+									<input type="text" class="form-control" id="recipient_name" name="recipient_name" value="{$mail_list['recipient_name']}">
+								</div>
+								<div class="col-lg-5">
+									无
+								</div>
+							</div>
+                            <div class="form-group">
+								<label for="recipient_phone" class="col-lg-3 control-label">收件人联系方式</label>
+								<div class="col-lg-4">
+									<input type="text" class="form-control" id="recipient_phone" name="recipient_phone" value="{$mail_list['recipient_phone']}">
+								</div>
+								<div class="col-lg-5">
+									无
+								</div>
+							</div>
+                            <div class="form-group">
+								<label for="recipient_entity" class="col-lg-3 control-label">收件人单位</label>
+								<div class="col-lg-4">
+									<input type="text" class="form-control" id="recipient_entity" name="recipient_entity" value="{$mail_list['recipient_entity']}">
+								</div>
+								<div class="col-lg-5">
+									无
+								</div>
+							</div>
+                            <div class="form-group">
+								<label for="recipient_address" class="col-lg-3 control-label">收件人地址</label>
+								<div class="col-lg-4">
+									<input type="text" class="form-control" id="recipient_address" name="recipient_address" value="{$mail_list['recipient_address']}">
+								</div>
+								<div class="col-lg-5">
+									无
+								</div>
+							</div>
+                            <div class="form-group">
+								<label for="recipient_zipcode" class="col-lg-3 control-label">收件人邮编</label>
+								<div class="col-lg-4">
+									<input type="text" class="form-control" id="recipient_zipcode" name="recipient_zipcode" value="{$mail_list['recipient_zipcode']}">
+								</div>
+								<div class="col-lg-5">
+									无
+								</div>
+							</div>
+                            <div class="form-group">
+								<label for="deliver_name" class="col-lg-3 control-label">快递公司名称</label>
+								<div class="col-lg-4">
+									<input type="text" class="form-control" id="deliver_name" name="deliver_name" value="{$mail_list['deliver_name']}">
+								</div>
+								<div class="col-lg-5">
+									EMS、顺丰、圆通、中通、优速等
+								</div>
+							</div>
+                            <div class="form-group">
+								<label for="tacking_number" class="col-lg-3 control-label">快递单号</label>
+								<div class="col-lg-4">
+									<input type="text" class="form-control" id="tacking_number" name="tacking_number" value="{$mail_list['tacking_number']}">
+								</div>
+								<div class="col-lg-5">
+									无
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="mail_fee" class="col-lg-3 control-label">费用（元）</label>
+								<div class="col-lg-4">
+									<input type="text" class="form-control" id="mail_fee" name="mail_fee" value="{$mail_list['mail_fee']	?	$mail_list['mail_fee']/100	:	''}">
+								</div>
+								<div class="col-lg-5">
+									无
+								</div>
+							</div>
+                            <div class="form-group">
+								<label for="inner_balance_id" class="col-lg-3 control-label">内部结算单编号</label>
+								<div class="col-lg-4">
+									<input type="text" class="form-control" id="inner_balance_id" name="inner_balance_id" value="{$mail_list['inner_balance_id']}">
+								</div>
+								<div class="col-lg-5">
+									大部分情况下不用填写
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="remarks" class="col-lg-3 control-label">备注</label>
+								<div class="col-lg-4">
+									<input type="text" class="form-control" id="remarks" name="remarks" value="{$mail_list['remarks']}">
+								</div>
+								<div class="col-lg-5">
+									备注事项
+								</div>
+							</div>
+                            
+		
+							<div class="form-group">
+								<div class="col-lg-9 col-lg-offset-3">
+									<button type="reset" value="reset" class="btn btn-default"> 取消 </button>
+									<button type="submit" value="submit" class="btn btn-primary"> 确认 </button>
+								</div>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+        </div>
+	</block>

@@ -1,0 +1,215 @@
+<!-- 继承模板页面 base --> 
+<!-- 该模板位于  ./Application\Home\View\Public --> 
+<extend name="Public:base" />
+	
+<!-- 区块 title 替换开始 --> 	
+	<block name="title">
+		<title>实际收支流水列表</title>
+	</block>
+<!-- 区块 title 替换结束 --> 	
+	
+<!-- 区块 page 替换开始 --> 
+	<block name="page">
+	  
+		<!-- Page Header
+		================================================== -->
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="page-header">
+					<h3>实际收支流水列表，共{$balance_count} 项）</h3>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="panel panel-warning">
+				<!-- Default panel contents -->
+				<div class="panel-heading">
+					“编号”是唯一的；表格底部有换页按钮；页面底部可以新增
+				</div>
+
+				<!-- Table -->
+				<div class="bs-component">
+					<table class="table table-striped table-hover table-bordered table-condensed">
+						<thead>
+							<tr class="info">
+								<th>编号</th>
+								<th>交易账户</th>
+								<th>交易日期</th>
+								<th>收入金额</th>
+								<th>支出金额</th>
+								<th>摘要</th>
+								<th>对方当事人</th>
+								<th>跟进人员</th>
+								<th>账单编号</th>
+								<th>缴费单编号</th>
+								<th>分摊情况</th>
+								<th>已全额分摊</th>
+								<th>常用操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<!-- 将controller assign过来的 balance_list 赋给  balance_vo--> 
+							<volist name="balance_list" id="balance_vo">
+							<tr>
+								<td>{$balance_vo.balance_id}</td>
+								<td>{$balance_vo.account_name}</td>
+								<td>
+									{$balance_vo.deal_date|date="Y-m-d",###}
+								</td>
+								<td align="right">{$balance_vo['income_amount']	?	$balance_vo['income_amount']/100	:	''}</td>
+								<td align="right">{$balance_vo['outcome_amount']	?	$balance_vo['outcome_amount']/100	:	''}</td>
+								<td>{$balance_vo.summary}</td>
+								<td>{$balance_vo.other_party}</td>
+								<td>{$balance_vo.member_name}</td>
+								<td><a href="{:U('Bill/view','bill_id='.$balance_vo['bill_id'])}" target="_blank">{$balance_vo['bill_id']	?	$balance_vo['bill_id']	:	''}</a></td>
+								<td><a href="{:U('CasePayment/view','case_payment_id='.$balance_vo['case_payment_id'])}" target="_blank">{$balance_vo['case_payment_id']	?	$balance_vo['case_payment_id']	:	''}</a></td>
+								<td align="right">
+									<volist name="balance_vo['Claim']" id="claim_vo">
+										{$claim_vo.cost_center_name}，{$claim_vo['income_amount']	?	$claim_vo['income_amount']/100	:	$claim_vo['outcome_amount']/100}<br>
+									</volist>
+									<a href="{:U('Claim/view','balance_id='.$balance_vo['balance_id'])}" target="_blank">修改分摊</a>										
+								</td>
+								<td align="right">
+									{$balance_vo['is_claimed']	?	'Yes'	:	'否'}
+								</td>
+								<td>
+									<a href="{:U('Balance/update','balance_id='.$balance_vo['balance_id'])}" target="_blank">更新</a> <br>
+									<a href="{:U('Balance/delete','balance_id='.$balance_vo['balance_id'])}">删除</a>
+									
+								</td>
+							</tr>
+							</volist>                 
+						</tbody>
+					</table> 
+					{$balance_page}
+				</div>
+			</div>
+        </div>
+	  
+	  
+		<a name="addNew"></a>
+		<!-- Forms
+			================================================== -->
+	    <div class="row">
+			<div class="col-lg-12">
+				<div class="page-header">
+					<h3 id="forms">新增</h3>
+				</div>
+			</div>
+        </div>
+
+        <div class="row">
+			<div class="col-lg-9">
+				<div class="well bs-component">
+					<form class="form-horizontal" method="post" action="{:U('Balance/add')}">
+						<fieldset>
+							<legend>尽量填写完整每一项</legend>
+							<div class="form-group">
+								<label for="account_id" class="col-lg-3 control-label">账户名称</label>
+								<div class="col-lg-4">
+									<select class="form-control" name="account_id">
+										<option value=""></option>
+										<volist name="account_list" id="account_vo">
+										<option value="{$account_vo.account_id}"  >{$account_vo.account_name}</option>
+										</volist>
+									</select>
+								</div>
+								<div class="col-lg-5">
+									<p>用鼠标选择</p>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="deal_date" class="col-lg-3 control-label">交易日期</label>
+								<div class="col-lg-4">
+									<input type="date" class="form-control" id="deal_date" name="deal_date" placeholder="deal_date" value="{$today|date="Y-m-d",###}">
+								</div>
+								<div class="col-lg-5">
+									日期格式为 yyyy-mm-dd，可用鼠标选择
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="income_amount" class="col-lg-3 control-label">收入金额</label>
+								<div class="col-lg-4">
+									<input type="text" class="form-control" id="income_amount" name="income_amount" placeholder="收入金额">
+								</div>
+								<div class="col-lg-5">
+									小数点必须使用英文的“.”
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="outcome_amount" class="col-lg-3 control-label">支出金额</label>
+								<div class="col-lg-4">
+									<input type="text" class="form-control" id="outcome_amount" name="outcome_amount" placeholder="支出金额">
+								</div>
+								<div class="col-lg-5">
+									小数点必须使用英文的“.”
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="summary" class="col-lg-3 control-label">交易摘要</label>
+								<div class="col-lg-4">
+									<input type="text" class="form-control" id="summary" name="summary" placeholder="交易摘要">
+								</div>
+								<div class="col-lg-5">
+									用于备注本笔流水
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="other_party" class="col-lg-3 control-label">对方当事人</label>
+								<div class="col-lg-4">
+									<input type="text" class="form-control" id="other_party" name="other_party" placeholder="对方当事人">
+								</div>
+								<div class="col-lg-5">
+									“收入”则填付款人名称，“支出”则填收款人名称			
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="follower_id" class="col-lg-3 control-label">跟进人员</label>
+								<div class="col-lg-4">
+									<select class="form-control" name="follower_id">
+										<option value=""></option>
+										<volist name="member_list" id="member_vo">
+										<option value="{$member_vo.member_id}">{$member_vo.member_name}</option>
+										</volist>
+									</select>
+								</div>
+								<div class="col-lg-5">
+									“跟进人员”主要是方便财务知道找谁咨询款项的信息			
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="bill_id" class="col-lg-3 control-label">账单编号</label>
+								<div class="col-lg-4">
+									<input type="text" class="form-control" id="bill_id" name="bill_id" placeholder="账单编号">
+								</div>
+								<div class="col-lg-5">
+									营业收入应当填写账单编号。			
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="case_payment_id" class="col-lg-3 control-label">缴费单编号</label>
+								<div class="col-lg-4">
+									<input type="text" class="form-control" id="case_payment_id" name="case_payment_id" placeholder="缴费单编号">
+								</div>
+								<div class="col-lg-5">
+									如果缴纳专利费，应当填写缴费单编号。			
+								</div>
+							</div>							
+
+							<div class="form-group">
+								<div class="col-lg-9 col-lg-offset-3">
+									<button type="reset" value="reset" class="btn btn-default"> 取消 </button>
+									<button type="submit" value="submit" class="btn btn-primary"> 确认 </button>
+								</div>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+        </div>
+
+	</block>
+<!-- 区块 page 替换结束 --> 

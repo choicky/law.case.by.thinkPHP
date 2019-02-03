@@ -1,0 +1,42 @@
+<!-- 继承模板页面 base --> 
+<!-- 该模板位于  ./Application\Home\View\Public --> 
+<extend name="Public:base" />
+	
+<!-- 区块 title 替换开始 --> 	
+	<block name="title">
+		<title>搜索专利费用信息</title>
+	</block>
+<!-- 区块 title 替换结束 --> 	
+	
+<!-- 区块 page 替换开始 --> 
+	<block name="page">
+	  
+		<!-- Page Header
+		================================================== -->
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="page-header">
+					<h3>搜索专利缴费任务</h3>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="panel panel-warning">
+				<include file="Public:search_form_head-1r1c" /> <!-- 搜索框第一行，解释如何搜索，1行，3列 -->
+				<include file="Public:search_fee_by_due_date-table" /> <!-- 根据期限日搜索费用的搜索框，表格 -->
+			</div>
+        </div>
+
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="page-header">
+					<h3>搜索结果（共{$case_fee_count}项）</h>
+				</div>
+			</div>
+		</div>
+		
+		<include file="Public:case_fee_list-table" /> <!-- 分页显示案件费用列表，专利与商标模版相同 -->
+	</block>
+<!-- 区块 page 替换结束 --> 

@@ -1,0 +1,137 @@
+<extend name="Public:base" />
+	
+	<block name="title">
+		<title>更新文件任务信息</title>
+	</block>
+	
+	<block name="page">
+	  
+		<!-- Page Header
+		================================================== -->
+        <div class="row">
+			<div class="col-lg-12">
+				<div class="page-header">
+					<h3 id="forms">更新</h3>
+				</div>
+			</div>
+        </div>
+
+        <div class="row">
+			<div class="col-lg-9">
+				<div class="well bs-component">
+					<form class="form-horizontal" method="post" action="__CONTROLLER__/update">
+						<fieldset>
+							<legend>每一项都要填写</legend>
+								<!-- 隐藏域开始 -->
+								<input type="hidden" class="form-control" id="case_file_id" name="case_file_id" value="{$case_file_list.case_file_id}">
+								<input type="hidden" class="form-control" id="case_id" name="case_id" value="{$case_file_list.case_id}">
+								<!-- 隐藏域结束 -->
+							<div class="form-group">
+								<label for="file_type_id" class="col-lg-3 control-label">文件名称</label>
+								<div class="col-lg-4">
+									<select class="form-control" name="file_type_id">
+										<option value=""></option>
+										<volist name="file_type_list" id="file_type_vo">
+										<option value="{$file_type_vo.file_type_id}" {$file_type_vo['file_type_id']==$case_file_list['file_type_id']	?	'selected="selected"'	:	''}">{$file_type_vo.file_type_name}</option>
+										</volist>
+									</select>
+								</div>
+								<div class="col-lg-5">
+									可通过<a href="{:U('FileType/listPage#addNew')}" target="_blank">这里</a>添加更多的文件类型		
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="oa_date" class="col-lg-3 control-label">官文发文日</label>
+								<div class="col-lg-4">									
+									<input type="date" class="form-control" id="oa_date" name="oa_date" value="{$case_file_list['oa_date']	?	date("Y-m-d",$case_file_list['oa_date'])	:	''}">
+								</div>
+								<div class="col-lg-5">
+									日期格式 yyyy-mm-dd 
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="due_date" class="col-lg-3 control-label">期限日</label>
+								<div class="col-lg-4">									
+									<input type="date" class="form-control" id="due_date" name="due_date" value="{$case_file_list['due_date']	?	date("Y-m-d",$case_file_list['due_date'])	:	''}">
+								</div>
+								<div class="col-lg-5">
+									“期限日”是必填的
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="completion_date" class="col-lg-3 control-label">完成日</label>
+								<div class="col-lg-4">									
+									<input type="date" class="form-control" id="completion_date" name="completion_date" value="{$case_file_list['completion_date']	?	date("Y-m-d",$case_file_list['completion_date'])	:	''}">
+								</div>
+								<div class="col-lg-5">
+									日期格式 yyyy-mm-dd 
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="service_fee" class="col-lg-3 control-label">服务费</label>
+								<div class="col-lg-4">									
+									<input type="text" class="form-control" id="service_fee" name="service_fee" value="{$case_file_list['service_fee']/100}">
+								</div>
+								<div class="col-lg-5">
+									如该文件产生单独的服务费，才需要填写<br>
+									缴纳官费产生的服务费（如纯年费）记录在缴费记录中就行 
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="bill_id" class="col-lg-3 control-label">账单编号</label>
+								<div class="col-lg-4">									
+									<input type="text" class="form-control" id="bill_id" name="bill_id" value="{$case_file_list['bill_id']	?	$case_file_list['bill_id']	:	''}">
+								</div>
+								<div class="col-lg-5">
+									 
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="invoice_id" class="col-lg-3 control-label">发票编号</label>
+								<div class="col-lg-4">									
+									<input type="text" class="form-control" id="invoice_id" name="invoice_id" value="{$case_file_list['invoice_id']	?	$case_file_list['invoice_id']	:	''}">
+								</div>
+								<div class="col-lg-5">
+									 
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="claim_id" class="col-lg-3 control-label">到款认领单编号</label>
+								<div class="col-lg-4">									
+									<input type="text" class="form-control" id="claim_id" name="claim_id" value="{$case_file_list['claim_id']	?	$case_file_list['claim_id']	:	''}">
+								</div>
+								<div class="col-lg-5">
+									 
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inner_balance_id" class="col-lg-3 control-label">内部结算单编号</label>
+								<div class="col-lg-4">									
+									<input type="text" class="form-control" id="inner_balance_id" name="inner_balance_id" value="{$case_file_list['inner_balance_id']	?	$case_file_list['inner_balance_id']	:	''}">
+								</div>
+								<div class="col-lg-5">
+									 
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="cost_amount" class="col-lg-3 control-label">内部结算金额</label>
+								<div class="col-lg-4">									
+									<input type="text" class="form-control" id="cost_amount" name="cost_amount" value="{$case_file_list['cost_amount']/100}">
+								</div>
+								<div class="col-lg-5">
+									 
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<div class="col-lg-9 col-lg-offset-3">
+									<button type="reset" value="reset" class="btn btn-default"> 取消 </button>
+									<button type="submit" value="submit" class="btn btn-primary"> 确认 </button>
+								</div>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+        </div>
+	</block>

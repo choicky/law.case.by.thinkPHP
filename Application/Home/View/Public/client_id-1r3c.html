@@ -1,0 +1,20 @@
+<!-- 填写客源/客户编号，1行，3列 -->
+							<div class="form-group">
+								<label for="client_id" class="col-lg-3 control-label">客源/客户/发票抬头</label>
+								<div class="col-lg-4">
+									<!--
+                                    <select class="form-control" name="client_id">
+										<option value=""}></option>
+										<volist name="client_list" id="client_vo">
+										<option value="{$client_vo.client_id}">{$client_vo.client_name}</option>
+										</volist>
+									</select>
+                                    -->
+                                    <input type="text" class="form-control" id="client_id" name="client_id" placeholder="只能填写客户编号">
+								</div>
+								<div class="col-lg-5">
+									只能填编号，本系统中客户编号=申请人编号；<br>到<a href="{:U('Client/listAll')}" target="_blank">这里</a>同时按 Ctrl、F 两键搜索客户/申请人名称，找到其编号；
+									如找不到就<a href="{:U('Client/listAll#addNew')}" target="_blank">录入</a>；<br>
+                                    每个客户/申请人应该有唯一的ID。
+								</div>
+							</div>

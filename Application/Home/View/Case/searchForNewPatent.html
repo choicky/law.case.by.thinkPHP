@@ -1,0 +1,75 @@
+<!-- 继承模板页面 base --> 
+<!-- 该模板位于  ./Application\Home\View\Public --> 
+<extend name="Public:base" />
+	
+<!-- 区块 title 替换开始 --> 	
+	<block name="title">
+		<title>专利->开案登记</title>
+	</block>
+<!-- 区块 title 替换结束 --> 	
+	
+<!-- 区块 page 替换开始 --> 
+	<block name="page">
+	  
+		<!-- Page Header
+		================================================== -->
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="page-header">
+					<h3>专利->开案登记：先搜索最近使用的案号</h3>
+				</div>
+			</div>
+		</div>
+		
+		<include file="Public:search_case_group-1r1c" /> <!-- 根据案件大类进行搜索 -->
+
+		
+		<!-- Page Header
+		================================================== -->
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="page-header">
+					<h3>最新开案的{$case_count}个案子：</h3>
+				</div>
+			</div>
+		</div>
+		
+		<include file="Public:case_list-table" /> <!-- 分页显示案件列表，专利与商标模版相同 -->
+	  
+		
+		<a name="addNew"></a>
+		<!-- Page Header
+		================================================== -->
+        <div class="row">
+			<div class="col-lg-12">
+				<div class="page-header">
+					<h3 id="forms">开案初步登记</h3>
+				</div>
+			</div>
+        </div>
+
+        <div class="row">
+			<div class="col-lg-9">
+				<div class="well bs-component">
+					<form class="form-horizontal" method="post" action="__CONTROLLER__/add">
+						<fieldset>
+							<legend>“盈方案号”是必须的</legend>
+							<include file="Public:our_ref-1r3c" /> <!-- 填写客源/客户编号，1行，3列 -->
+							<include file="Public:case_type_id-1r3c" /> <!-- 选择案件小类，1行，3列 -->
+							<include file="Public:follower_id-1r3c" /> <!-- 选择跟案人，1行，3列 -->
+							<include file="Public:create_date-1r3c" /> <!-- 选择开按日期，1行，3列 -->
+							<include file="Public:client_id-1r3c" /> <!-- 填写客源/客户编号，1行，3列 -->
+							<include file="Public:client_ref-1r3c" /> <!-- 填写客户案号，1行，3列 -->
+							<include file="Public:applicant_id-1r3c" /> <!-- 填写申请人编号，1行，3列 -->
+							<include file="Public:tentative_title-1r3c" /> <!-- 填写专利/商标暂定名称，1行，3列 -->
+							<include file="Public:remarks-1r3c" /> <!-- 填写案件的备注，1行，3列 -->
+							<include file="Public:related_our_ref-1r3c" /> <!-- 填写关联的盈方案号，1行，3列 -->
+							<include file="Public:button_reset_submit-1r2c" /> <!-- 重置与提交按钮，1行，2列 -->
+						</fieldset>
+					</form>
+				</div>
+			</div>
+        </div>
+
+	</block>
+<!-- 区块 page 替换结束 --> 
