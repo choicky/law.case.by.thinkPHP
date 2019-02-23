@@ -127,8 +127,8 @@ class CaseViewModel extends ViewModel {
 	}
 	
 	//返回本数据视图的所有非专利数据
-	public function listAllNotPatent() {
-		$case_type_list	=	D('CaseType')->listNotPatentCaseTypeId();
+	public function listAllIPinfo() {
+		$case_type_list	=	D('CaseType')->listIPinfoCaseTypeId();
 		$map['case_type_id']  = array('in',$case_type_list);
 		
 		$order['create_date']	=	'desc';
@@ -156,8 +156,8 @@ class CaseViewModel extends ViewModel {
 	}
 	
 	//分页返回本数据视图的所有非专利数据
-	public function listPageNotPatent($p,$limit) {
-		$case_type_list	=	D('CaseType')->listNotPatentCaseTypeId();
+	public function listPageIPinfo($p,$limit) {
+		$case_type_list	=	D('CaseType')->listIPinfoCaseTypeId();
 		$map['case_type_id']  = array('in',$case_type_list);
 		
 		$order['create_date']	=	'desc';

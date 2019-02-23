@@ -40,7 +40,7 @@ class CaseGroupModel extends RelationModel {
 	}
 	
 	//返回本数据表中与专利有关的数据
-	public function listAllNotPatent() {
+	public function listAllIPinfo() {
 		$map['case_group_name']	=	array('notlike','%专利%');
 		$order['convert(case_group_name using gb2312)']	=	'asc';
 		$data	=	$this->where($map)->order($order)->select();

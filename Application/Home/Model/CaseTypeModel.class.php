@@ -33,7 +33,7 @@ class CaseTypeModel extends RelationModel {
 	}
 	
 	//返回本数据表中与专利有关的数据
-	public function listAllNotPatent() {
+	public function listAllIPinfo() {
 		$map['case_type_name']	=	array('notlike','%专利%');
 		$order['convert(case_type_name using gb2312)']	=	'asc';
 		$list	=	$this->where($map)->order($order)->select();
@@ -64,7 +64,7 @@ class CaseTypeModel extends RelationModel {
 	}
 	
 	//返回本数据表中与非专利有关的 case_type_id
-	public function listNotPatentCaseTypeId() {
+	public function listIPinfoCaseTypeId() {
 		$map['case_type_name']	=	array('notlike','%专利%');
 		$order['convert(case_type_name using gb2312)']	=	'asc';
 		$list	=	$this->field('case_type_id')->where($map)->order($order)->select();
