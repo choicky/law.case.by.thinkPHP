@@ -53,7 +53,7 @@ if(!cookie('member_id') and !cookie('user_group_id') and !cookie('member_name'))
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">
             <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="patent">专利 <span class="caret"></span></a>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="patent">开案与监控 <span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="themes">
                 <li><h5>案件</h5></li>
 				<li><a href="__MODULE__/Case/searchForNewLaws">开案登记</a></li>
@@ -74,35 +74,6 @@ if(!cookie('member_id') and !cookie('user_group_id') and !cookie('member_name'))
 				<li><a href="__MODULE__/Check/listNotIssuedLaws">没有填写发证日的专利列表</a></li>
 				<li><a href="__MODULE__/Check/listNoFeeLaws">没有费用任务的专利列表</a></li>					
 				
-              </ul>
-            </li>
-			<li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="trademark">商标<span class="caret"></span></a>
-              <ul class="dropdown-menu" aria-labelledby="themes">
-                <li><h5>案件</h5></li>
-				<li><a href="__MODULE__/Case/searchForNewIPinfo">开案登记</a></li>
-				<li><a href="__MODULE__/Case/searchIPinfo">查询</a></li>
-				<li><a href="__MODULE__/Case/listPageIPinfo">总览</a></li>
-				<li><h5>费用</h5></li>
-				<li><a href="__MODULE__/CaseFee/searchIPinfoFeeByDueDate">监控</a></li>
-				<li><a href="__MODULE__/CaseFee/listPageIPinfoFee">费用记录总览</a></li>
-				<li><a href="__MODULE__/CaseFee/searchIPinfoFeeByCompletionDate">按缴费日查询</a></li>				
-				<li><h5>文件</h5></li>
-				<li><a href="__MODULE__/CaseFile/searchIPinfoFileByDueDate">监控</a></li>
-				<li><a href="__MODULE__/CaseFile/listPageIPinfoFile">文件记录总览</a></li>
-				<li><a href="__MODULE__/CaseFile/searchIPinfoFileByCompletionDate">按交文日查询</a></li>
-				<li><h5>优先权</h5></li>
-				<li><a href="__MODULE__/CasePriority/search">搜索</a></li>
-				<li><a href="__MODULE__/CasePriority/listPage">优先权记录总览</a></li>	
-				<li><h5>商标分类管理</h5></li>
-				<li><a href="__MODULE__/TmCategory/listAll">商标分类列表、编辑</a></li>
-				<li><h5>补全案件信息</h5></li>
-				<li><a href="__MODULE__/Check/listNotIssuedIPinfo">没有填写发证日的商标列表</a></li>
-				<li><a href="__MODULE__/Check/listNoFeeIPinfo">没有费用任务的商标列表</a></li>	
-				<li><a href="__MODULE__/Check/listNoApplicationNumberIPinfo">没有填写申请号或分类号的商标列表</a></li>	
-                <li class="divider"></li>
-                <li><a href="__MODULE__/CaseImport/listSourceCaseByPage">第三方提供的商标信息列表</a></li>
-                <li><a href="__MODULE__/CaseImport/listOutputCaseByPage">第三方商标信息更新后待确认的清单</a></li>
               </ul>
             </li>
 			<li class="dropdown">

@@ -147,13 +147,13 @@ class ClientController extends Controller {
 	
 	
 	//该函数暂时只用于搜索某个申请人名下的专利案
-	public function listPatent(){
+	public function listLaws(){
 		
 		//接收搜索参数
 		$applicant_id	=	I('get.applicant_id','0','int');
 		
 		//构造 maping
-		$case_type_list	=	D('CaseType')->listPatentCaseTypeId();
+		$case_type_list	=	D('CaseType')->listLawsCaseTypeId();
 		$map['case_type_id']  = array('in',$case_type_list);
 
 		if($applicant_id){

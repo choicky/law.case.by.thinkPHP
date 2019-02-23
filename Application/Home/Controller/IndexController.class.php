@@ -17,7 +17,7 @@ class IndexController extends Controller {
 			$map_case_file['due_date']	=	array('LT',$file_due_date);
 			
 			//构造专利的 mapping
-			$patent_file_type_list	=	D('CaseType')->listPatentCaseTypeId();
+			$patent_file_type_list	=	D('CaseType')->listLawsCaseTypeId();
 			$map_case_file['case_type_id']  = array('in',$patent_file_type_list);
 			
 			//搜索出专利交文任务
@@ -43,7 +43,7 @@ class IndexController extends Controller {
 			$map_case_fee['due_date']	=	array('LT',$fee_due_date);
 			
 			//构造专利的 mapping
-			$patent_fee_type_list	=	D('CaseType')->listPatentCaseTypeId();
+			$patent_fee_type_list	=	D('CaseType')->listLawsCaseTypeId();
 			$map_case_fee['case_type_id']  = array('in',$patent_fee_type_list);
 			
 			//搜索出专利缴费任务

@@ -5,10 +5,10 @@ use Think\Controller;
 class CheckController extends Controller {
 
 	//找出没有登记发证日的专利案子	
-	public function listNotIssuedPatent(){
+	public function listNotIssuedLaws(){
 		
 		//找到专利的 case_type_id
-		$case_type_list	=	D('CaseType')->listPatentCaseTypeId();
+		$case_type_list	=	D('CaseType')->listLawsCaseTypeId();
 		
 		//构造 mapping
 		$map['case_type_id']  = array('in',$case_type_list);
@@ -69,10 +69,10 @@ class CheckController extends Controller {
   }
 	
 	//找出没有费用任务的专利案子
-	public function listNoFeePatent(){
+	public function listNoFeeLaws(){
 		
 		//找到专利的 case_type_id
-		$case_type_list	=	D('CaseType')->listPatentCaseTypeId();
+		$case_type_list	=	D('CaseType')->listLawsCaseTypeId();
 		
 		//构造 mapping
 		$map['case_type_id']  = array('in',$case_type_list);

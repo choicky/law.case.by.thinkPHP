@@ -374,7 +374,7 @@ class CaseFileController extends Controller {
 	}
 	
 	//搜索专利文件
-	public function searchPatentFileByDueDate(){
+	public function searchLawsFileByDueDate(){
 		
 		//取出 Client 表的内容以及数量
 		$client_list	=	D('Client')->listBasic();
@@ -425,7 +425,7 @@ class CaseFileController extends Controller {
 			$map_case_file['due_date']	=	array('between',$start_due_date.','.$end_due_date);
 			
 			//获取专利的 case_type_id 集合
-			$case_type_list	=	D('CaseType')->listPatentCaseTypeId();
+			$case_type_list	=	D('CaseType')->listLawsCaseTypeId();
 			$map_case_file['case_type_id']  = array('in',$case_type_list);
 			
 			//根据是否开了账单进行处理
@@ -576,7 +576,7 @@ class CaseFileController extends Controller {
 	}
 	
 	//搜索
-	public function searchPatentFileByCompletionDate(){
+	public function searchLawsFileByCompletionDate(){
 		
 		//取出 Client 表的内容以及数量
 		$client_list	=	D('Client')->listBasic();
@@ -619,7 +619,7 @@ class CaseFileController extends Controller {
 			$map_case_file['completion_date']	=	array('between',$start_completion_date.','.$end_completion_date);
 			
 			//获取专利的 case_type_id 集合
-			$case_type_list	=	D('CaseType')->listPatentCaseTypeId();
+			$case_type_list	=	D('CaseType')->listLawsCaseTypeId();
 			$map_case_file['case_type_id']  = array('in',$case_type_list);
 			
 			//根据是否开了账单进行处理
@@ -760,12 +760,12 @@ class CaseFileController extends Controller {
 	}
 	
 	//分页显示，其中，$p为当前分页数，$limit为每页显示的记录数
-	public function listPagePatentFile(){
+	public function listPageLawsFile(){
 		$p	= I("p",1,"int");
 		$page_limit  =   C("RECORDS_PER_PAGE");
 		
 		//获取专利的 case_type_id 集合
-		$case_type_list	=	D('CaseType')->listPatentCaseTypeId();
+		$case_type_list	=	D('CaseType')->listLawsCaseTypeId();
 		$map_case_file['case_type_id']  = array('in',$case_type_list);
 		
 		$case_file_list = D('CaseFileView')->listPageSearch($p,$limit,$map_case_file);
