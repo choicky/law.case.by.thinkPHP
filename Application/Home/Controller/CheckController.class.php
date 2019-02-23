@@ -4,10 +4,10 @@ use Think\Controller;
 
 class CheckController extends Controller {
 
-	//找出没有登记发证日的专利案子	
+	//找出没有登记发证日的法律事务案子	
 	public function listNotIssuedLaws(){
 		
-		//找到专利的 case_type_id
+		//找到法律事务的 case_type_id
 		$case_type_list	=	D('CaseType')->listLawsCaseTypeId();
 		
 		//构造 mapping
@@ -31,7 +31,7 @@ class CheckController extends Controller {
 		//找出没有有发证日但没有续展提醒的商标	
 	public function listNotRenewalIPinfo(){
 		
-		//找到非专利的 case_type_id
+		//找到盈方的 case_type_id
 		$case_type_list	=	D('CaseType')->listIPinfoCaseTypeId();
 		
 		//构造 mapping
@@ -68,10 +68,10 @@ class CheckController extends Controller {
 	
   }
 	
-	//找出没有费用任务的专利案子
+	//找出没有费用任务的法律事务案子
 	public function listNoFeeLaws(){
 		
-		//找到专利的 case_type_id
+		//找到法律事务的 case_type_id
 		$case_type_list	=	D('CaseType')->listLawsCaseTypeId();
 		
 		//构造 mapping

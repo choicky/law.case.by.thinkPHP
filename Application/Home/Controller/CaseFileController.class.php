@@ -237,11 +237,11 @@ class CaseFileController extends Controller {
 			//获取本案子的 $case_type_name
 			
 		
-			//根据 $case_type_name 是否包含“专利”来构造对应的检索条件
-			if(false	!==	strpos($case_type_name,'专利')){
-				$map_file_type['file_type_name']	=	array('like','%专利%');
+			//根据 $case_type_name 是否包含“法律事务”来构造对应的检索条件
+			if(false	!==	strpos($case_type_name,'法律事务')){
+				$map_file_type['file_type_name']	=	array('like','%法律事务%');
 			}else{
-				$map_file_type['file_type_name']	=	array('notlike','%专利%');
+				$map_file_type['file_type_name']	=	array('notlike','%法律事务%');
 			}
 							
 			//取出 FileType 表的内容以及数量
@@ -347,11 +347,11 @@ class CaseFileController extends Controller {
 		//获取本案子的 $case_type_name
 		$case_type_name	=	$case_list['case_type_name'];
 		
-		//根据 $case_type_name 是否包含“专利”来构造对应的检索条件
-		if(false	!==	strpos($case_type_name,'专利')){
-			$map_file_type['file_type_name']	=	array('like','%专利%');
+		//根据 $case_type_name 是否包含“法律事务”来构造对应的检索条件
+		if(false	!==	strpos($case_type_name,'法律事务')){
+			$map_file_type['file_type_name']	=	array('like','%法律事务%');
 		}else{
-			$map_file_type['file_type_name']	=	array('notlike','%专利%');
+			$map_file_type['file_type_name']	=	array('notlike','%法律事务%');
             $annual_list	=	tenYearOption(20);
 		}
         
@@ -373,7 +373,7 @@ class CaseFileController extends Controller {
 		$this->display();
 	}
 	
-	//搜索专利文件
+	//搜索法律事务文件
 	public function searchLawsFileByDueDate(){
 		
 		//取出 Client 表的内容以及数量
@@ -424,7 +424,7 @@ class CaseFileController extends Controller {
 			
 			$map_case_file['due_date']	=	array('between',$start_due_date.','.$end_due_date);
 			
-			//获取专利的 case_type_id 集合
+			//获取法律事务的 case_type_id 集合
 			$case_type_list	=	D('CaseType')->listLawsCaseTypeId();
 			$map_case_file['case_type_id']  = array('in',$case_type_list);
 			
@@ -473,7 +473,7 @@ class CaseFileController extends Controller {
 	$this->display();
 	}
 	
-	//搜索非专利文件
+	//搜索盈方文件
 	public function searchIPinfoFileByDueDate(){
 		
 		//取出 Client 表的内容以及数量
@@ -524,7 +524,7 @@ class CaseFileController extends Controller {
 			
 			$map_case_file['due_date']	=	array('between',$start_due_date.','.$end_due_date);
 			
-			//获取专利的 case_type_id 集合
+			//获取法律事务的 case_type_id 集合
 			$case_type_list	=	D('CaseType')->listIPinfoCaseTypeId();
 			$map_case_file['case_type_id']  = array('in',$case_type_list);
 			
@@ -618,7 +618,7 @@ class CaseFileController extends Controller {
 			
 			$map_case_file['completion_date']	=	array('between',$start_completion_date.','.$end_completion_date);
 			
-			//获取专利的 case_type_id 集合
+			//获取法律事务的 case_type_id 集合
 			$case_type_list	=	D('CaseType')->listLawsCaseTypeId();
 			$map_case_file['case_type_id']  = array('in',$case_type_list);
 			
@@ -710,7 +710,7 @@ class CaseFileController extends Controller {
 			
 			$map_case_file['completion_date']	=	array('between',$start_completion_date.','.$end_completion_date);
 			
-			//获取专利的 case_type_id 集合
+			//获取法律事务的 case_type_id 集合
 			$case_type_list	=	D('CaseType')->listIPinfoCaseTypeId();
 			$map_case_file['case_type_id']  = array('in',$case_type_list);
 			
@@ -764,7 +764,7 @@ class CaseFileController extends Controller {
 		$p	= I("p",1,"int");
 		$page_limit  =   C("RECORDS_PER_PAGE");
 		
-		//获取专利的 case_type_id 集合
+		//获取法律事务的 case_type_id 集合
 		$case_type_list	=	D('CaseType')->listLawsCaseTypeId();
 		$map_case_file['case_type_id']  = array('in',$case_type_list);
 		
@@ -785,7 +785,7 @@ class CaseFileController extends Controller {
 		$p	= I("p",1,"int");
 		$page_limit  =   C("RECORDS_PER_PAGE");
 		
-		//获取专利的 case_type_id 集合
+		//获取法律事务的 case_type_id 集合
 		$case_type_list	=	D('CaseType')->listIPinfoCaseTypeId();
 		$map_case_file['case_type_id']  = array('in',$case_type_list);
 		

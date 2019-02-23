@@ -146,7 +146,7 @@ class ClientController extends Controller {
 	}
 	
 	
-	//该函数暂时只用于搜索某个申请人名下的专利案
+	//该函数暂时只用于搜索某个申请人名下的法律事务案
 	public function listLaws(){
 		
 		//接收搜索参数
@@ -178,7 +178,7 @@ class ClientController extends Controller {
 		$this->display();
 	}
 	
-	//该函数暂时只用于搜索某个申请人名下的非专利案
+	//该函数暂时只用于搜索某个申请人名下的盈方案
 	public function listIPinfo(){
 		
 		//接收搜索参数

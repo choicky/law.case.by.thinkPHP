@@ -35,7 +35,7 @@ class CaseFeeController extends Controller {
 		$p	= I("p",1,"int");
 		$page_limit  =   C("RECORDS_PER_PAGE");
 		
-		//获取专利的 case_type_id 集合
+		//获取法律事务的 case_type_id 集合
 		$case_type_list	=	D('CaseType')->listLawsCaseTypeId();
 		$map_case_fee['case_type_id']  = array('in',$case_type_list);
 		
@@ -56,7 +56,7 @@ class CaseFeeController extends Controller {
 		$p	= I("p",1,"int");
 		$page_limit  =   C("RECORDS_PER_PAGE");
 		
-		//获取专利的 case_type_id 集合
+		//获取法律事务的 case_type_id 集合
 		$case_type_list	=	D('CaseType')->listIPinfoCaseTypeId();
 		$map_case_fee['case_type_id']  = array('in',$case_type_list);
 		
@@ -328,7 +328,7 @@ class CaseFeeController extends Controller {
 			//获取本条费用的案子的 $case_type_name
 			$case_type_name	=	D('CaseFee')->returnCaseTypeName($case_fee_id);
 
-			//根据 $case_type_name 是否包含“专利”来构造对应的检索条件
+			//根据 $case_type_name 是否包含“法律事务”来构造对应的检索条件
 			if(false	!==	strpos($case_type_name,'发明')){
 				$map_fee_type['fee_type_name']	=	array('like','%发明%');
 			}elseif(false	!==	strpos($case_type_name,'实用新型')){
@@ -346,7 +346,7 @@ class CaseFeeController extends Controller {
 			}elseif(false	!==	strpos($case_type_name,'其他')){
 				$map_fee_type['fee_type_name']	=	array('like','%其他%');
 			}else{
-				$map_fee_type['fee_type_name']	=	array('notlike','%专利%');
+				$map_fee_type['fee_type_name']	=	array('notlike','%法律事务%');
 			}
 			
 			//取出 FeeType 表的内容以及数量		
@@ -428,7 +428,7 @@ class CaseFeeController extends Controller {
 		}
 	}
 	
-	//搜索专利费用
+	//搜索法律事务费用
 	public function searchLawsFeeByDueDate(){
 		
 		//取出 Client 表的内容以及数量
@@ -495,7 +495,7 @@ class CaseFeeController extends Controller {
 			}
 			$map_case_fee['due_date']	=	array('between',$start_due_date.','.$end_due_date);
 			
-			//获取专利的 case_type_id 集合
+			//获取法律事务的 case_type_id 集合
 			$case_type_list	=	D('CaseType')->listLawsCaseTypeId();
 			$map_case_fee['case_type_id']  = array('in',$case_type_list);
 			
@@ -550,7 +550,7 @@ class CaseFeeController extends Controller {
 	$this->display();
 	}
 	
-	//搜索非专利费用
+	//搜索盈方费用
 	public function searchIPinfoFeeByDueDate(){
 		
 		//取出 Client 表的内容以及数量
@@ -617,7 +617,7 @@ class CaseFeeController extends Controller {
 			}
 			$map_case_fee['due_date']	=	array('between',$start_due_date.','.$end_due_date);
 			
-			//获取非专利的 case_type_id 集合
+			//获取盈方的 case_type_id 集合
 			$case_type_list	=	D('CaseType')->listIPinfoCaseTypeId();
 			$map_case_fee['case_type_id']  = array('in',$case_type_list);
 			
@@ -672,7 +672,7 @@ class CaseFeeController extends Controller {
 	$this->display();
 	}
 	
-	//搜索专利费用
+	//搜索法律事务费用
 	public function searchLawsFeeByCompletionDate(){
 		
 		//取出 Client 表的内容以及数量
@@ -730,7 +730,7 @@ class CaseFeeController extends Controller {
 			}
 			$map_case_fee['payment_date']	=	array('between',$start_payment_date.','.$end_payment_date);
 			
-			//获取专利的 case_type_id 集合
+			//获取法律事务的 case_type_id 集合
 			$case_type_list	=	D('CaseType')->listLawsCaseTypeId();
 			$map_case_fee['case_type_id']  = array('in',$case_type_list);
 			
@@ -785,7 +785,7 @@ class CaseFeeController extends Controller {
 	$this->display();
 	}
 	
-	//搜索非专利费用
+	//搜索盈方费用
 	public function searchIPinfoFeeByCompletionDate(){
 		
 		//取出 Client 表的内容以及数量
@@ -843,7 +843,7 @@ class CaseFeeController extends Controller {
 			}
 			$map_case_fee['payment_date']	=	array('between',$start_payment_date.','.$end_payment_date);
 			
-			//获取专利的 case_type_id 集合
+			//获取法律事务的 case_type_id 集合
 			$case_type_list	=	D('CaseType')->listIPinfoCaseTypeId();
 			$map_case_fee['case_type_id']  = array('in',$case_type_list);
 			
@@ -930,7 +930,7 @@ class CaseFeeController extends Controller {
 		//获取本案子的 $case_type_name
 		$case_type_name	=	$case_list['case_type_name'];
 		
-		//根据 $case_type_name 是否包含“专利”来构造对应的检索条件
+		//根据 $case_type_name 是否包含“法律事务”来构造对应的检索条件
 		if(false	!==	strpos($case_type_name,'发明')){
 			$map_fee_type['fee_type_name']	=	array('like','%发明%');
 			$annual_list	=	numberOption(20);
@@ -951,7 +951,7 @@ class CaseFeeController extends Controller {
 		}elseif(false	!==	strpos($case_type_name,'其他')){
 			$map_fee_type['fee_type_name']	=	array('like','%其他%');
 		}else{
-			$map_fee_type['fee_type_name']	=	array('notlike','%专利%');
+			$map_fee_type['fee_type_name']	=	array('notlike','%法律事务%');
 		}
 		
 		//输出 annual_list

@@ -31,7 +31,7 @@ class CaseController extends Controller {
     $this->display();
 	}
 	
-	//分页显示所有专利案件，其中，$p为当前分页数，$limit为每页显示的记录数
+	//分页显示所有法律事务案件，其中，$p为当前分页数，$limit为每页显示的记录数
 	public function listPageLaws(){
 		$p	= I("p",1,"int");
 		$page_limit  =   C("RECORDS_PER_PAGE");
@@ -48,7 +48,7 @@ class CaseController extends Controller {
 		$this->display();
 	}
 	
-	//分页显示所有非专利案件，其中，$p为当前分页数，$limit为每页显示的记录数
+	//分页显示所有盈方案件，其中，$p为当前分页数，$limit为每页显示的记录数
 	public function listPageIPinfo(){
 		$p	= I("p",1,"int");
 		$page_limit  =   C("RECORDS_PER_PAGE");
@@ -170,8 +170,8 @@ class CaseController extends Controller {
 			$this->assign('case_list',$case_list);
 			
 			
-			//判断本案是专利、还是非专利
-			if(strpos($case_list['case_type_name'],'专利') !== false){
+			//判断本案是法律事务、还是盈方
+			if(strpos($case_list['case_type_name'],'法律事务') !== false){
 				$is_patent	=	1;
 			}else{
 				$is_patent	=	0;
@@ -179,9 +179,9 @@ class CaseController extends Controller {
 			
 			//取出 CaseType 表的内容以及数量
 			if($is_patent){
-				$map['case_type_name']	=	array('like','%专利%');
+				$map['case_type_name']	=	array('like','%法律事务%');
 			}else{
-				$map['case_type_name']	=	array('notlike','%专利%');
+				$map['case_type_name']	=	array('notlike','%法律事务%');
 			}
 			$case_type_list	=	D('CaseType')->where($map)->listBasic();
 			$case_type_count	=	count($case_type_list);
@@ -214,17 +214,17 @@ class CaseController extends Controller {
 		}
 	}
 		
-	//搜索专利案件
+	//搜索法律事务案件
 	public function searchLaws(){
 		//取出年份列表，作为 options
 		$year_list	=	yearOption();
 		$this->assign('year_list',$year_list);
 		
-		//取出 CaseGroup 表的专利数据，作为 options
+		//取出 CaseGroup 表的法律事务数据，作为 options
 		$case_group_list	=	D('CaseGroup')->field(true)->listAllLaws();
 		$this->assign('case_group_list',$case_group_list);
 		
-		//取出 CaseType 表的专利数据，作为 options
+		//取出 CaseType 表的法律事务数据，作为 options
 		$case_type_list	=	D('CaseType')->field('case_type_id,case_type_name')->listAllLaws();
 		$this->assign('case_type_list',$case_type_list);
 		
@@ -320,17 +320,17 @@ class CaseController extends Controller {
 	$this->display();
 	}
 	
-	//搜索非专利案件
+	//搜索盈方案件
 	public function searchIPinfo(){
 		//取出年份列表，作为 options
 		$year_list	=	yearOption();
 		$this->assign('year_list',$year_list);
 		
-		//取出 CaseGroup 表的专利数据，作为 options
+		//取出 CaseGroup 表的法律事务数据，作为 options
 		$case_group_list	=	D('CaseGroup')->field(true)->listAllIPinfo();
 		$this->assign('case_group_list',$case_group_list);
 		
-		//取出 CaseType 表的专利数据，作为 options
+		//取出 CaseType 表的法律事务数据，作为 options
 		$case_type_list	=	D('CaseType')->field('case_type_id,case_type_name')->listAllIPinfo();
 		$this->assign('case_type_list',$case_type_list);
 		
@@ -426,13 +426,13 @@ class CaseController extends Controller {
 	$this->display();
 	}
 	
-	//搜索专利
+	//搜索法律事务
 	public function searchForNewLaws(){
 		//取出年份列表，作为 options
 		$year_list	=	yearOption();
 		$this->assign('year_list',$year_list);
 		
-		//取出 CaseGroup 表的专利数据，作为 options
+		//取出 CaseGroup 表的法律事务数据，作为 options
 		$case_group_list	=	D('CaseGroup')->field(true)->listAllLaws();
 		$this->assign('case_group_list',$case_group_list);
 		
@@ -440,7 +440,7 @@ class CaseController extends Controller {
 		$number_list	=	numberOption(5);
 		$this->assign('number_list',$number_list);
 
-		//取出 CaseType 表的专利数据，作为 options
+		//取出 CaseType 表的法律事务数据，作为 options
 		$case_type_list	=	D('CaseType')->field('case_type_id,case_type_name')->listAllLaws();
 		$case_type_count	=	count($case_type_list);
 		$this->assign('case_type_list',$case_type_list);
@@ -505,13 +505,13 @@ class CaseController extends Controller {
 	$this->display();
 	}
 	
-	//搜索非专利
+	//搜索盈方
 	public function searchForNewIPinfo(){
 		//取出年份列表，作为 options
 		$year_list	=	yearOption();
 		$this->assign('year_list',$year_list);
 		
-		//取出 CaseGroup 表的非专利数据，作为 options
+		//取出 CaseGroup 表的盈方数据，作为 options
 		$case_group_list	=	D('CaseGroup')->field(true)->listAllIPinfo();
 		$this->assign('case_group_list',$case_group_list);
 		
@@ -519,7 +519,7 @@ class CaseController extends Controller {
 		$number_list	=	numberOption(5);
 		$this->assign('number_list',$number_list);
 
-		//取出 CaseType 表的非专利数据，作为 options
+		//取出 CaseType 表的盈方数据，作为 options
 		$case_type_list	=	D('CaseType')->field('case_type_id,case_type_name')->listAllIPinfo();
 		$case_type_count	=	count($case_type_list);
 		$this->assign('case_type_list',$case_type_list);
