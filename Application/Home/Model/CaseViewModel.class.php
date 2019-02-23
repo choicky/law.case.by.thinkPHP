@@ -114,7 +114,7 @@ class CaseViewModel extends ViewModel {
 		return array("list"=>$list,"page"=>$show,"count"=>$count);
 	}	
 	
-	//返回本数据视图的所有专利数据
+	//返回本数据视图的所有法律事务数据
 	public function listAllLaws() {
 		$case_type_list	=	D('CaseType')->listLawsCaseTypeId();
 		$map['case_type_id']  = array('in',$case_type_list);
@@ -138,7 +138,7 @@ class CaseViewModel extends ViewModel {
 		return $list;
 	}
 	
-	//分页返回本数据视图的所有专利数据
+	//分页返回本数据视图的所有法律事务数据
 	public function listPageLaws($p,$limit) {
 		$case_type_list	=	D('CaseType')->listLawsCaseTypeId();
 		$map['case_type_id']  = array('in',$case_type_list);

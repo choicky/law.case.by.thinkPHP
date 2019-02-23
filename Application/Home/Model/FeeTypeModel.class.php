@@ -58,9 +58,9 @@ class FeeTypeModel extends Model {
 		return array("list"=>$list,"page"=>$show,"count"=>$count);
 	}
 	
-	//返回本数据表的“专利”数据
+	//返回本数据表的“法律事务”数据
 	public function listAllLaws() {
-		$map['fee_type_name']	=	array('like','%专利%');
+		$map['fee_type_name']	=	array('like','%法律事务%');
 		$order['convert(fee_type_name using gb2312)']	=	'asc';
 		$list	=	$this->where($map)->order($order)->select();
 		return $list;

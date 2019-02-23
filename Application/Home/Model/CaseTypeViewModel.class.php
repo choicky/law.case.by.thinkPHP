@@ -34,7 +34,7 @@ class CaseTypeViewModel extends ViewModel {
 	
 	//返回本数据表中与盈方有关的数据
 	public function listAllIPinfo() {
-		$map['case_group_name']	=	array('notlike','%专利%');
+		$map['case_group_name']	=	array('notlike','%法律事务%');
 		$order['convert(case_type_name using gb2312)']	=	'asc';
 		$list	=	$this->where($map)->order($order)->select();
 		return $list;

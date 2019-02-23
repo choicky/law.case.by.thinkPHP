@@ -31,17 +31,17 @@ class CaseGroupModel extends RelationModel {
 		
 	);
 	
-	//返回本数据表中与专利有关的数据
+	//返回本数据表中与法律事务有关的数据
 	public function listAllLaws() {
-		$map['case_group_name']	=	array('like','%专利%');
+		$map['case_group_name']	=	array('like','%法律事务%');
 		$order['convert(case_group_name using gb2312)']	=	'asc';
 		$data	=	$this->where($map)->order($order)->select();
 		return $data;
 	}
 	
-	//返回本数据表中与专利有关的数据
+	//返回本数据表中与法律事务有关的数据
 	public function listAllIPinfo() {
-		$map['case_group_name']	=	array('notlike','%专利%');
+		$map['case_group_name']	=	array('notlike','%法律事务%');
 		$order['convert(case_group_name using gb2312)']	=	'asc';
 		$data	=	$this->where($map)->order($order)->select();
 		return $data;

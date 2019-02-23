@@ -24,23 +24,23 @@ class CaseTypeModel extends RelationModel {
 		return $list;
 	}
 	
-	//返回本数据表中与专利有关的数据
+	//返回本数据表中与法律事务有关的数据
 	public function listAllLaws() {
-		$map['case_type_name']	=	array('like','%专利%');
+		$map['case_type_name']	=	array('like','%法律事务%');
 		$order['convert(case_type_name using gb2312)']	=	'asc';
 		$list	=	$this->where($map)->order($order)->select();
 		return $list;
 	}
 	
-	//返回本数据表中与专利有关的数据
+	//返回本数据表中与法律事务有关的数据
 	public function listAllIPinfo() {
-		$map['case_type_name']	=	array('notlike','%专利%');
+		$map['case_type_name']	=	array('notlike','%法律事务%');
 		$order['convert(case_type_name using gb2312)']	=	'asc';
 		$list	=	$this->where($map)->order($order)->select();
 		return $list;
 	}
 	
-	//根据 $case_group_id 返回本数据表中与专利有关的 case_type_id
+	//根据 $case_group_id 返回本数据表中与法律事务有关的 case_type_id
 	public function listCaseTypeId($case_group_id) {
 		$map['case_group_id']	=	$case_group_id;
 		$order['case_type_id']	=	'asc';
@@ -52,9 +52,9 @@ class CaseTypeModel extends RelationModel {
 	}
 	
 	
-	//返回本数据表中与专利有关的 case_type_id
+	//返回本数据表中与法律事务有关的 case_type_id
 	public function listLawsCaseTypeId() {
-		$map['case_type_name']	=	array('like','%专利%');
+		$map['case_type_name']	=	array('like','%法律事务%');
 		$order['convert(case_type_name using gb2312)']	=	'asc';
 		$list	=	$this->field('case_type_id')->where($map)->order($order)->select();
 		for($i=0;$i<count($list);$i++){
@@ -65,7 +65,7 @@ class CaseTypeModel extends RelationModel {
 	
 	//返回本数据表中与盈方有关的 case_type_id
 	public function listIPinfoCaseTypeId() {
-		$map['case_type_name']	=	array('notlike','%专利%');
+		$map['case_type_name']	=	array('notlike','%法律事务%');
 		$order['convert(case_type_name using gb2312)']	=	'asc';
 		$list	=	$this->field('case_type_id')->where($map)->order($order)->select();
 		for($i=0;$i<count($list);$i++){
