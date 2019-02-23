@@ -115,8 +115,8 @@ class CaseViewModel extends ViewModel {
 	}	
 	
 	//返回本数据视图的所有专利数据
-	public function listAllPatent() {
-		$case_type_list	=	D('CaseType')->listPatentCaseTypeId();
+	public function listAllLaws() {
+		$case_type_list	=	D('CaseType')->listLawsCaseTypeId();
 		$map['case_type_id']  = array('in',$case_type_list);
 		
 		$order['create_date']	=	'desc';
@@ -139,8 +139,8 @@ class CaseViewModel extends ViewModel {
 	}
 	
 	//分页返回本数据视图的所有专利数据
-	public function listPagePatent($p,$limit) {
-		$case_type_list	=	D('CaseType')->listPatentCaseTypeId();
+	public function listPageLaws($p,$limit) {
+		$case_type_list	=	D('CaseType')->listLawsCaseTypeId();
 		$map['case_type_id']  = array('in',$case_type_list);
 		
 		$order['create_date']	=	'desc';

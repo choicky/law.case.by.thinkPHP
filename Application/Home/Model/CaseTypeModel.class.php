@@ -25,7 +25,7 @@ class CaseTypeModel extends RelationModel {
 	}
 	
 	//返回本数据表中与专利有关的数据
-	public function listAllPatent() {
+	public function listAllLaws() {
 		$map['case_type_name']	=	array('like','%专利%');
 		$order['convert(case_type_name using gb2312)']	=	'asc';
 		$list	=	$this->where($map)->order($order)->select();
@@ -53,7 +53,7 @@ class CaseTypeModel extends RelationModel {
 	
 	
 	//返回本数据表中与专利有关的 case_type_id
-	public function listPatentCaseTypeId() {
+	public function listLawsCaseTypeId() {
 		$map['case_type_name']	=	array('like','%专利%');
 		$order['convert(case_type_name using gb2312)']	=	'asc';
 		$list	=	$this->field('case_type_id')->where($map)->order($order)->select();

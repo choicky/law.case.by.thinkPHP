@@ -32,7 +32,7 @@ class CaseGroupModel extends RelationModel {
 	);
 	
 	//返回本数据表中与专利有关的数据
-	public function listAllPatent() {
+	public function listAllLaws() {
 		$map['case_group_name']	=	array('like','%专利%');
 		$order['convert(case_group_name using gb2312)']	=	'asc';
 		$data	=	$this->where($map)->order($order)->select();
