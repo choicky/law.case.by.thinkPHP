@@ -32,7 +32,7 @@ class CaseTypeViewModel extends ViewModel {
 	
 	
 	
-	//返回本数据表中与非专利有关的数据
+	//返回本数据表中与盈方有关的数据
 	public function listAllIPinfo() {
 		$map['case_group_name']	=	array('notlike','%专利%');
 		$order['convert(case_type_name using gb2312)']	=	'asc';

@@ -126,7 +126,7 @@ class CaseViewModel extends ViewModel {
 		return $list;
 	}
 	
-	//返回本数据视图的所有非专利数据
+	//返回本数据视图的所有盈方数据
 	public function listAllIPinfo() {
 		$case_type_list	=	D('CaseType')->listIPinfoCaseTypeId();
 		$map['case_type_id']  = array('in',$case_type_list);
@@ -155,7 +155,7 @@ class CaseViewModel extends ViewModel {
 		return array("list"=>$list,"page"=>$show,"count"=>$count);
 	}
 	
-	//分页返回本数据视图的所有非专利数据
+	//分页返回本数据视图的所有盈方数据
 	public function listPageIPinfo($p,$limit) {
 		$case_type_list	=	D('CaseType')->listIPinfoCaseTypeId();
 		$map['case_type_id']  = array('in',$case_type_list);

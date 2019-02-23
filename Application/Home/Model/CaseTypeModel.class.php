@@ -63,7 +63,7 @@ class CaseTypeModel extends RelationModel {
 		return $case_type_list;
 	}
 	
-	//返回本数据表中与非专利有关的 case_type_id
+	//返回本数据表中与盈方有关的 case_type_id
 	public function listIPinfoCaseTypeId() {
 		$map['case_type_name']	=	array('notlike','%专利%');
 		$order['convert(case_type_name using gb2312)']	=	'asc';
