@@ -52,12 +52,12 @@ class CaseFeeController extends Controller {
 	}
 	
 	//分页显示，其中，$p为当前分页数，$limit为每页显示的记录数
-	public function listPageNotPatentFee(){
+	public function listPageIPinfoFee(){
 		$p	= I("p",1,"int");
 		$page_limit  =   C("RECORDS_PER_PAGE");
 		
 		//获取专利的 case_type_id 集合
-		$case_type_list	=	D('CaseType')->listNotPatentCaseTypeId();
+		$case_type_list	=	D('CaseType')->listIPinfoCaseTypeId();
 		$map_case_fee['case_type_id']  = array('in',$case_type_list);
 		
 		$case_list	=	M('Case')->where($map_case_fee)->select();
@@ -551,7 +551,7 @@ class CaseFeeController extends Controller {
 	}
 	
 	//搜索非专利费用
-	public function searchNotPatentFeeByDueDate(){
+	public function searchIPinfoFeeByDueDate(){
 		
 		//取出 Client 表的内容以及数量
 		$client_list	=	D('Client')->listBasic();
@@ -618,7 +618,7 @@ class CaseFeeController extends Controller {
 			$map_case_fee['due_date']	=	array('between',$start_due_date.','.$end_due_date);
 			
 			//获取非专利的 case_type_id 集合
-			$case_type_list	=	D('CaseType')->listNotPatentCaseTypeId();
+			$case_type_list	=	D('CaseType')->listIPinfoCaseTypeId();
 			$map_case_fee['case_type_id']  = array('in',$case_type_list);
 			
 			//根据是否开了账单进行处理
@@ -786,7 +786,7 @@ class CaseFeeController extends Controller {
 	}
 	
 	//搜索非专利费用
-	public function searchNotPatentFeeByCompletionDate(){
+	public function searchIPinfoFeeByCompletionDate(){
 		
 		//取出 Client 表的内容以及数量
 		$client_list	=	D('Client')->listBasic();
@@ -844,7 +844,7 @@ class CaseFeeController extends Controller {
 			$map_case_fee['payment_date']	=	array('between',$start_payment_date.','.$end_payment_date);
 			
 			//获取专利的 case_type_id 集合
-			$case_type_list	=	D('CaseType')->listNotPatentCaseTypeId();
+			$case_type_list	=	D('CaseType')->listIPinfoCaseTypeId();
 			$map_case_fee['case_type_id']  = array('in',$case_type_list);
 			
 			//根据是否开了账单进行处理

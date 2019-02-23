@@ -49,10 +49,10 @@ class CaseController extends Controller {
 	}
 	
 	//分页显示所有非专利案件，其中，$p为当前分页数，$limit为每页显示的记录数
-	public function listPageNotPatent(){
+	public function listPageIPinfo(){
 		$p	= I("p",1,"int");
 		$page_limit  =   C("RECORDS_PER_PAGE");
-		$case_list = D('CaseView')->listPageNotPatent($p,$page_limit);
+		$case_list = D('CaseView')->listPageIPinfo($p,$page_limit);
 		$case_count	=	count($case_list);
 		$this->assign('case_list',$case_list['list']);
 		$this->assign('case_page',$case_list['page']);
@@ -321,17 +321,17 @@ class CaseController extends Controller {
 	}
 	
 	//搜索非专利案件
-	public function searchNotPatent(){
+	public function searchIPinfo(){
 		//取出年份列表，作为 options
 		$year_list	=	yearOption();
 		$this->assign('year_list',$year_list);
 		
 		//取出 CaseGroup 表的专利数据，作为 options
-		$case_group_list	=	D('CaseGroup')->field(true)->listAllNotPatent();
+		$case_group_list	=	D('CaseGroup')->field(true)->listAllIPinfo();
 		$this->assign('case_group_list',$case_group_list);
 		
 		//取出 CaseType 表的专利数据，作为 options
-		$case_type_list	=	D('CaseType')->field('case_type_id,case_type_name')->listAllNotPatent();
+		$case_type_list	=	D('CaseType')->field('case_type_id,case_type_name')->listAllIPinfo();
 		$this->assign('case_type_list',$case_type_list);
 		
 		//取出 Member 表的基本内容，作为 options
@@ -374,7 +374,7 @@ class CaseController extends Controller {
 				$case_type_list	=	D('CaseType')->listCaseTypeId($case_group_id);
 				$map['case_type_id']  = array('in',$case_type_list);
 			}else{
-				$case_type_list	=	D('CaseType')->listNotPatentCaseTypeId();
+				$case_type_list	=	D('CaseType')->listIPinfoCaseTypeId();
 				$map['case_type_id']  = array('in',$case_type_list);
 			}
 			if($case_type_id){
@@ -506,13 +506,13 @@ class CaseController extends Controller {
 	}
 	
 	//搜索非专利
-	public function searchForNewNotPatent(){
+	public function searchForNewIPinfo(){
 		//取出年份列表，作为 options
 		$year_list	=	yearOption();
 		$this->assign('year_list',$year_list);
 		
 		//取出 CaseGroup 表的非专利数据，作为 options
-		$case_group_list	=	D('CaseGroup')->field(true)->listAllNotPatent();
+		$case_group_list	=	D('CaseGroup')->field(true)->listAllIPinfo();
 		$this->assign('case_group_list',$case_group_list);
 		
 		//取出数量，作为 options
@@ -520,7 +520,7 @@ class CaseController extends Controller {
 		$this->assign('number_list',$number_list);
 
 		//取出 CaseType 表的非专利数据，作为 options
-		$case_type_list	=	D('CaseType')->field('case_type_id,case_type_name')->listAllNotPatent();
+		$case_type_list	=	D('CaseType')->field('case_type_id,case_type_name')->listAllIPinfo();
 		$case_type_count	=	count($case_type_list);
 		$this->assign('case_type_list',$case_type_list);
 		$this->assign('case_type_count',$case_type_count);
@@ -559,7 +559,7 @@ class CaseController extends Controller {
 				$case_type_id_list	=	D('CaseType')->listCaseTypeId($case_group_id);				
 				$map['case_type_id']  = array('in',$case_type_id_list);
 			}else{
-				$case_type_list	=	D('CaseType')->listNotPatentCaseTypeId();
+				$case_type_list	=	D('CaseType')->listIPinfoCaseTypeId();
 				$map['case_type_id']  = array('in',$case_type_list);
 			}
 						

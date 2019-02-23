@@ -29,10 +29,10 @@ class CheckController extends Controller {
   }
     
 		//找出没有有发证日但没有续展提醒的商标	
-	public function listNotRenewalNotPatent(){
+	public function listNotRenewalIPinfo(){
 		
 		//找到非专利的 case_type_id
-		$case_type_list	=	D('CaseType')->listNotPatentCaseTypeId();
+		$case_type_list	=	D('CaseType')->listIPinfoCaseTypeId();
 		
 		//构造 mapping
 		$map['case_type_id']  = array('in',$case_type_list);
@@ -108,10 +108,10 @@ class CheckController extends Controller {
     }
 	
 	//找出没有登记发证日的商标案子	
-	public function listNotIssuedNotPatent(){
+	public function listNotIssuedIPinfo(){
 		
 		//找到商标的 case_type_id
-		$case_type_list	=	D('CaseType')->listNotPatentCaseTypeId();
+		$case_type_list	=	D('CaseType')->listIPinfoCaseTypeId();
 		
 		//构造 mapping
 		$map['case_type_id']  = array('in',$case_type_list);
@@ -131,10 +131,10 @@ class CheckController extends Controller {
     }
 	
 	//找出没有费用任务的商标案子
-	public function listNoFeeNotPatent(){
+	public function listNoFeeIPinfo(){
 		
 		//找到商标的 case_type_id
-		$case_type_list	=	D('CaseType')->listNotPatentCaseTypeId();
+		$case_type_list	=	D('CaseType')->listIPinfoCaseTypeId();
 		
 		//构造 mapping
 		$map['case_type_id']  = array('in',$case_type_list);
@@ -170,10 +170,10 @@ class CheckController extends Controller {
     }
 	
 	//找出没有填写申请号或分类号的商标案子
-	public function listNoApplicationNumberNotPatent(){
+	public function listNoApplicationNumberIPinfo(){
 		
 		//找到商标的 case_type_id
-		$case_type_list	=	D('CaseType')->listNotPatentCaseTypeId();
+		$case_type_list	=	D('CaseType')->listIPinfoCaseTypeId();
 		
 		//构造 mapping
 		$map['case_type_id']  = array('in',$case_type_list);

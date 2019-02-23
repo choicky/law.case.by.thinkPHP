@@ -179,13 +179,13 @@ class ClientController extends Controller {
 	}
 	
 	//该函数暂时只用于搜索某个申请人名下的非专利案
-	public function listNotPatent(){
+	public function listIPinfo(){
 		
 		//接收搜索参数
 		$applicant_id	=	I('get.applicant_id','0','int');
 		
 		//构造 maping
-		$case_type_list	=	D('CaseType')->listNotPatentCaseTypeId();
+		$case_type_list	=	D('CaseType')->listIPinfoCaseTypeId();
 		$map['case_type_id']  = array('in',$case_type_list);
 
 		if($applicant_id){
