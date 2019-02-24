@@ -57,7 +57,7 @@
 							
 							<tr class="info">
 								<th>缴费日截止时间</th>
-								<th>申请人<a href="{:U('Client/listAll')}" target="_blank">编号</a></th>
+								<th>当事人<a href="{:U('Client/listAll')}" target="_blank">编号</a></th>
 								<th>结算账户</th>
 								<th>&nbsp;</th>
 								<th>&nbsp;</th>
@@ -68,7 +68,7 @@
 									<input type="date" class="form-control" id="end_payment_date" name="end_payment_date" value="{$end_payment_date|date="Y-m-d",###}">
 								</td>
 								<td>
-									<input type="text" class="form-control" id="applicant_id" name="applicant_id" placeholder="只能填写申请人编号" value="{$applicant_id}">
+									<input type="text" class="form-control" id="applicant_id" name="applicant_id" placeholder="只能填写当事人编号" value="{$applicant_id}">
 									<!--<select class="form-control" name="applicant_id">
 										<option value="0"}>不限</option>
 										<volist name="client_list" id="applicant_vo">

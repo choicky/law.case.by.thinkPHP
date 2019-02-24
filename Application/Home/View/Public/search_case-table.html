@@ -8,7 +8,7 @@
 								<th>跟案人</th>
 								<th>客户<a href="{:U('Client/listAll')}" target="_blank">编号</a></th>
 								<th>最早发证日</th>
-								<th>专利名称</th>
+								<th>案件名称</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -47,14 +47,14 @@
 								<td>
 									<input type="date" class="form-control" id="start_time" name="start_time" value="{$start_time	?	date("Y-m-d",$start_time)	:	''}"></td>
 								<td>
-									<input type="text" class="form-control" id="formal_title" name="formal_title" placeholder="专利名称" value="{$formal_title	?	$formal_title	:	''}"></td>
+									<input type="text" class="form-control" id="formal_title" name="formal_title" placeholder="案件名称" value="{$formal_title	?	$formal_title	:	''}"></td>
 								
 							</tr>
 							<tr class="info">
 								<th></th>
 								<th>案件小类</th>
 								<th>处理人</th>
-								<th>申请人<a href="{:U('Client/listAll')}" target="_blank">编号</a></th>
+								<th>当事人<a href="{:U('Client/listAll')}" target="_blank">编号</a></th>
 								<th>最晚发证日</th>
 								<th></th>
 								
@@ -77,7 +77,7 @@
 										</volist>
 									</select></td>
 								<td>
-									<input type="text" class="form-control" id="applicant_id" name="applicant_id" placeholder="只能填写申请人编号" value="{$applicant_id}">
+									<input type="text" class="form-control" id="applicant_id" name="applicant_id" placeholder="只能填写当事人编号" value="{$applicant_id}">
 									<!--
 									<select  class="form-control" name="applicant_id" id="applicant_id">
 										<option value="0"}>不限</option>
