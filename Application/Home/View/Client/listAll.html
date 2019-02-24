@@ -22,7 +22,7 @@
 			<div class="panel panel-warning">
 				<!-- Default panel contents -->
 				<div class="panel-heading panel-title">
-					先 Ctrl + F 查找一下是否存在相应的客户/申请人，如果不存在再添加。<br>每个人/公司应该只录入一次（1个编号），如录入了多次，就把专利/商标汇总到其中一个编号，然后删除名下没有案件的。
+					先 Ctrl + F 查找一下是否存在相应的客户/申请人，如果不存在再添加。<br>每个人/公司应该只录入一次（1个编号），如录入了多次，就把法律事务/商标汇总到其中一个编号，然后删除名下没有案件的。
 				</div>
 
 				<!-- Table -->
@@ -36,8 +36,8 @@
 								<th>身份证号/组织机构代码</th>
 								<th>商业登记证号/营业执照号</th>
 								<th>税务登记证号</th>
-								<th>名下专利案</th>
-								<th>名下非专利案</th>
+								<th>名下法律事务案</th>
+								<th>名下盈方案</th>
 								<th>联系方式</th>
 								<th>常用操作</th>
 							
@@ -52,8 +52,8 @@
 								<td>{$client_vo.client_id_number}</td>
 								<td>{$client_vo.client_business_number}</td>
 								<td>{$client_vo.client_tax_number}</td>
-								<td><a href="{:U('Client/listLaws','applicant_id='.$client_vo['client_id'])}" target="_blank">名下专利案</a></td>
-								<td><a href="{:U('Client/listIPinfo','applicant_id='.$client_vo['client_id'])}" target="_blank">名下非专利案</a></td>
+								<td><a href="{:U('Client/listLaws','applicant_id='.$client_vo['client_id'])}" target="_blank">名下法律事务案</a></td>
+								<td><a href="{:U('Client/listIPinfo','applicant_id='.$client_vo['client_id'])}" target="_blank">名下盈方案</a></td>
 								<td>
 									<?php
 										$contact_count	=	count($client_vo['ClientContact']);
