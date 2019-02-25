@@ -215,7 +215,7 @@ class ClaimController extends Controller {
 				$income_amount_total	=	bcadd(bcdiv($claim_list[$j]['income_amount'],'100',2),$income_amount_total, 2);
                 $outcome_amount_total	=	bcadd(bcdiv($claim_list[$j]['outcome_amount'],'100',2),$outcome_amount_total, 2);
 			}
-            $surplus_amount_total   =   bcadd($income_amount_total, $outcome_amount_total, 2);
+            $surplus_amount_total   =   bcsub($income_amount_total, $outcome_amount_total, 2);
 			$this->assign('income_amount_total',$income_amount_total);
 			$this->assign('outcome_amount_total',$outcome_amount_total);
             $this->assign('surplus_amount_total',$surplus_amount_total);
